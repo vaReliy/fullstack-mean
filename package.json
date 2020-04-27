@@ -1,0 +1,26 @@
+{
+  "name": "fullstack-mean",
+  "version": "1.0.0",
+  "description": "MEAN fullstack education project",
+  "main": "src/index.js",
+  "scripts": {
+    "server": "nodemon index"
+  },
+  "keywords": [
+    "angular",
+    "express"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:vaReliy/fullstack-mean.git"
+  },
+  "author": "Valeriy Garbuzov",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "nodemon": "^2.0.3"
+  }
+}
