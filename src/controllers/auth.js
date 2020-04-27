@@ -1,6 +1,10 @@
 module.exports.login = (request, response) => {
+  const { email, password } = request.body;
   return response.status(200).json({
-    login: true,
+    login: {
+      email,
+      password,
+    }
   });
 };
 
