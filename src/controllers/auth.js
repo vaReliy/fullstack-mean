@@ -15,7 +15,7 @@ module.exports.login = async (request, response) => {
         userId: candidate._id,
       }, keys.jwtSecret, { expiresIn: keys.jwtExpiresIn });
 
-      response.status(200).json({ token });
+      response.status(200).json({ token: `Bearer ${token}` });
     } else {
       response.status(401).json({ // fixme: merge it?
         message: `The user with entered email and(or) password are not correct!`,
