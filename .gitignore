@@ -2,5 +2,5 @@
 
 /node_modules
 
-/src/config/keys.orig.js
+/src/config/keys.js
 package-lock.json
