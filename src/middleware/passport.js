@@ -1,6 +1,7 @@
 const { Strategy, ExtractJwt } = require('passport-jwt');
 const keys = require('../config/keys');
 const User = require('../models/User');
+const errorHandler = require('../utils/errorHandler');
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -14,8 +15,7 @@ module.exports = passport => {
         const user = await User.findById(payload.userId).select('email id');
         done(null, user);
       } catch (e) {
-        // todo: handle error!
-        console.error(e);
+        errorHandler(e);
       }
     }),
   );
