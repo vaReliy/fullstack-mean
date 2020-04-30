@@ -20,14 +20,28 @@ module.exports.getById = async (request, response) => {
   }
 };
 
-module.exports.create = (request, response) => { // todo
-  return response.status(200).json({
-    createCategory: true,
-  });
+module.exports.create = async (request, response) => {
+  try {
+    const category = new Category({
+      name: request.body.name,
+      imageSrc: request.file ? request.file.path : '',
+      user: request.user.id,
+    });
+    await category.save();
+    response.status(200).json(category);
+  } catch (e) {
+    errorHandler(e);
+  }
 };
 
 module.exports.update = async (request, response) => {
   try {
+    const data = {};
+    data.name = request.body.name;
+    if (request.file) { // multer
+      data.imageSrc = request.file.path;
+    }
+
     const category = await Category.findOneAndUpdate(
       { _id: request.params.id },
       { $set: request.body },
