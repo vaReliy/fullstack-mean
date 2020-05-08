@@ -4,7 +4,11 @@
   "description": "MEAN fullstack education project",
   "main": "src/index.js",
   "scripts": {
-    "server": "nodemon index"
+    "install": "echo todo",
+    "install:client": "npm install --prefix client",
+    "start:client": "npm run start --prefix client",
+    "install:server": "echo todo",
+    "start:server": "nodemon index"
   },
   "keywords": [
     "angular",
