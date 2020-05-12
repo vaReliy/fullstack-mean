@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/fullstack-theme/styles/materialize.min.css",
+              "src/fullstack-theme/styles/styles.min.css"
             ],
             "scripts": []
           },
