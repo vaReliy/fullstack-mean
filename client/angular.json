@@ -32,7 +32,10 @@
               "src/fullstack-theme/styles/materialize.min.css",
               "src/fullstack-theme/styles/styles.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/fullstack-theme/scripts/materialize.min.js",
+              "src/fullstack-theme/scripts/scripts.js"
+            ]
           },
           "configurations": {
             "production": {

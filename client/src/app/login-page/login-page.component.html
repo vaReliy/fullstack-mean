@@ -1,16 +1,45 @@
-<div class="card">
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="card">
   <div class="card-content">
-    <span class="card-title">Войти в систему</span>
+    <span class="card-title">Вхід до системи</span>
     <div class="input-field">
-      <input id="email" type="email" required>
+      <input
+        formControlName="email"
+        [ngClass]="{invalid: form.get('email').invalid && form.get('email').touched}"
+        id="email"
+        type="email">
       <label for="email">Email:</label>
+      <span
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+        class="helper-text red-text">
+        <span *ngIf="form.get('email').errors['required']">Поле обов'язкове до заповнення.</span>
+        <span *ngIf="form.get('email').errors['email']">Введіть корректну email адресу.</span>
+      </span>
     </div>
     <div class="input-field">
-      <input id="password" type="password" required>
+      <input
+        formControlName="password"
+        [ngClass]="{invalid: form.get('password').invalid && form.get('password').touched}"
+        id="password"
+        type="password">
       <label for="password">Пароль:</label>
+      <span
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+        class="helper-text red-text">
+        <span *ngIf="form.get('password').errors['required']">Поле обов'язкове до заповнення.</span>
+        <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+          Довжина паролю має бути не меншна за {{form.get('password').errors['minlength']['requiredLength']}} символів.
+        </span>
+      </span>
     </div>
   </div>
   <div class="card-action">
-    <button class="modal-action btn waves-effect">Войти</button>
+    <button
+      [disabled]="form.invalid"
+      class="modal-action btn waves-effect">
+      Вхід
+    </button>
   </div>
-</div>
+</form>
