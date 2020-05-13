@@ -1,3 +1,4 @@
+import {HttpClientModule} from "@angular/common/http";
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserModule} from '@angular/platform-browser';
@@ -15,12 +16,13 @@ import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.comp
     LoginPageComponent,
     AuthLayoutComponent,
     SiteLayoutComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
