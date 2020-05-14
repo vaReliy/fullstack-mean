@@ -1,9 +1,9 @@
-import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {tap} from "rxjs/operators";
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
-import {User} from "../models/user.model";
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,16 +32,16 @@ export class AuthService {
     this.setToken(null);
   }
 
+  setToken(value: string) {
+    this._token = value;
+    localStorage.setItem('auth-token', value);
+  }
+
   getToken(): string {
     return this._token;
   }
 
   isAuthenticated(): boolean {
     return !!this._token;
-  }
-
-  private setToken(value: string) {
-    this._token = value;
-    localStorage.setItem('auth-token', value);
   }
 }
