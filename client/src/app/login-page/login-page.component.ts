@@ -30,6 +30,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         console.log('You can enter to system now.'); // todo to message
       } else if (params['accessDenied']) {
         console.log('Access denied!'); // todo to message
+      } else if (params['sessionExpired']) {
+        console.log('Session expired!'); // todo to message
       }
     });
   }
