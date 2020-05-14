@@ -9,7 +9,7 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
 import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.component';
-import {TokenInterceptor} from './token.interceptor';
+import {TokenInterceptor} from './shared/token.interceptor';
 
 @NgModule({
   declarations: [
