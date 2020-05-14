@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 
 import {User} from '../shared/models/user.model';
 import {AuthService} from '../shared/services/auth.service';
+import {MaterializeService} from '../shared/services/materialize.service';
 
 @Component({
   selector: 'app-login-page',
@@ -27,11 +28,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        console.log('You can enter to system now.'); // todo to message
+        MaterializeService.showMessage('Для доступу, авторизуйтесь!');
       } else if (params['accessDenied']) {
-        console.log('Access denied!'); // todo to message
+        MaterializeService.showErrorMessage('Для доступу, авторизуйтесь!');
       } else if (params['sessionExpired']) {
-        console.log('Session expired!'); // todo to message
+        MaterializeService.showErrorMessage('Увійдіть до системи ще раз!');
       }
     });
   }
@@ -48,7 +49,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.aSub = this.authService.login(user).subscribe(
       () => this.router.navigate(['/']), // todo redirect to /overview
       error => {
-        console.warn('Login error', error);
+        MaterializeService.showErrorMessage('Помилка входу в систему');
         this.form.enable();
       },
     )

@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 
 import {User} from '../shared/models/user.model';
 import {AuthService} from '../shared/services/auth.service';
+import {MaterializeService} from '../shared/services/materialize.service';
 
 @Component({
   selector: 'app-register-page',
@@ -44,6 +45,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       }),
       error => {
         console.warn('Registration error', error);
+        MaterializeService.showErrorMessage('Помилка реєстрації. Повторіть спробу.');
         this.form.enable();
       },
     )
