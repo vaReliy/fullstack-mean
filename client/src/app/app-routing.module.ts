@@ -9,15 +9,15 @@ import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.comp
 
 
 const routes: Routes = [
+  { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
+
+    ],
+  },
   { path: '', component: AuthLayoutComponent, children: [
       { path: '', pathMatch: 'full', redirectTo: 'login' },
       { path: 'login', component: LoginPageComponent, },
       { path: 'register', component: RegisterPageComponent, },
   ]},
-  { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
-
-    ],
-  },
 ];
 
 @NgModule({
