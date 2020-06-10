@@ -4,9 +4,10 @@
   "description": "MEAN fullstack education project",
   "main": "src/index.js",
   "scripts": {
-    "install": "echo todo",
+    "i-all": "npm run install:all",
+    "install:all": "npm run install:server && npm run install:client",
     "install:client": "npm install --prefix client",
-    "install:server": "echo todo",
+    "install:server": "npm install",
     "start:client": "npm run start --prefix client",
     "start:server": "nodemon index",
     "start": "run-p start:server start:client"
