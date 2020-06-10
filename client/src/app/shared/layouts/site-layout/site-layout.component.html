@@ -1,1 +1,54 @@
-<p>site-layout works!</p>
+<ul class="sidenav sidenav-fixed a-sidenav">
+  <h4>Newborn</h4>
+
+  <li
+    *ngFor="let link of links"
+    routerLinkActive="active"
+    class="bold">
+    <a
+      [routerLink]="[link.route]"
+      class="waves-effect waves-orange">
+      {{link.name}}
+    </a>
+  </li>
+
+  <li class="bold last">
+    <a
+      (click)="onLogout()"
+      class="waves-effect waves-orange">
+      Вихід
+    </a>
+  </li>
+</ul>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+
+<div
+  #floatingButton
+  class="fixed-action-btn">
+
+  <a
+    routerLink="/categories"
+    class="btn-floating btn-large red">
+    <i class="large material-icons">add</i>
+  </a>
+
+  <ul>
+    <li>
+      <a
+        routerLink="/analytics"
+        class="btn-floating green">
+        <i class="material-icons">assignment</i>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/history"
+        class="btn-floating blue">
+        <i class="material-icons">list</i>
+      </a>
+    </li>
+  </ul>
+</div>

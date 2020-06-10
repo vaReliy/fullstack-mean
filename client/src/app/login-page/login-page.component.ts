@@ -47,7 +47,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.form.disable();
     const user: User = this.form.getRawValue();
     this.aSub = this.authService.login(user).subscribe(
-      () => this.router.navigate(['/']), // todo redirect to /overview
+      () => this.router.navigate(['/overview']),
       error => {
         MaterializeService.showErrorMessage('Помилка входу в систему');
         this.form.enable();
