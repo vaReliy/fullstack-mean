@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+import {AddCategoryPageComponent} from "./add-category-page/add-category-page.component";
 import {AnalyticsPageComponent} from "./analytics-page/analytics-page.component";
 import {CategoriesPageComponent} from "./categories-page/categories-page.component";
 import {HistoryPageComponent} from "./history-page/history-page.component";
@@ -21,7 +22,12 @@ const routes: Routes = [
   ]},
   { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
       { path: 'analytics', component: AnalyticsPageComponent, },
-      { path: 'categories', component: CategoriesPageComponent, },
+      { path: 'categories', children:
+          [
+            { path: '', component: CategoriesPageComponent, },
+            { path: 'add', component: AddCategoryPageComponent, },
+          ],
+      },
       { path: 'history', component: HistoryPageComponent, },
       { path: 'order', component: OrderPageComponent, },
       { path: 'overview', component: OverviewPageComponent, },

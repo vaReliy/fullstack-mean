@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
+import {AddCategoryPageComponent} from './add-category-page/add-category-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -28,6 +29,7 @@ import {TokenInterceptor} from './shared/token.interceptor';
     CategoriesPageComponent,
     HistoryPageComponent,
     OrderPageComponent,
+    AddCategoryPageComponent,
   ],
   imports: [
     BrowserModule,
