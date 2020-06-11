@@ -1,5 +1,6 @@
 declare var M: {
   toast: Function,
+  updateTextFields: Function,
   FloatingActionButton: {
     init: Function,
   },
@@ -16,5 +17,9 @@ export class MaterializeService {
 
   static initFloatingActionButton(nativeElement: any) {
     M.FloatingActionButton.init(nativeElement);
+  }
+
+  static updateTextFields() {
+    M.updateTextFields();
   }
 }

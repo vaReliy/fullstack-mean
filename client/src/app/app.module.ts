@@ -3,11 +3,12 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {AddCategoryPageComponent} from './add-category-page/add-category-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CategoriesPageComponent} from './categories-page/categories-page.component';
+import {CategoryDetailsPageComponent} from './category-details-page/category-details-page.component';
+import {CategoryFormComponent} from './category-details-page/category-form/category-form.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {OrderPageComponent} from './order-page/order-page.component';
@@ -30,8 +31,9 @@ import {TokenInterceptor} from './shared/token.interceptor';
     CategoriesPageComponent,
     HistoryPageComponent,
     OrderPageComponent,
-    AddCategoryPageComponent,
+    CategoryDetailsPageComponent,
     LoaderComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,

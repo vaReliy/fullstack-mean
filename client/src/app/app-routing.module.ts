@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AddCategoryPageComponent} from "./add-category-page/add-category-page.component";
 import {AnalyticsPageComponent} from "./analytics-page/analytics-page.component";
 import {CategoriesPageComponent} from "./categories-page/categories-page.component";
+import {CategoryDetailsPageComponent} from "./category-details-page/category-details-page.component";
 import {HistoryPageComponent} from "./history-page/history-page.component";
 import {LoginPageComponent} from './login-page/login-page.component';
 import {OrderPageComponent} from "./order-page/order-page.component";
@@ -25,7 +25,8 @@ const routes: Routes = [
       { path: 'categories', children:
           [
             { path: '', component: CategoriesPageComponent, },
-            { path: 'add', component: AddCategoryPageComponent, },
+            { path: 'add', component: CategoryDetailsPageComponent, },
+            { path: ':id', component: CategoryDetailsPageComponent, },
           ],
       },
       { path: 'history', component: HistoryPageComponent, },
