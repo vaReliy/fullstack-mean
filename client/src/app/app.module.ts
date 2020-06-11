@@ -14,6 +14,7 @@ import {OrderPageComponent} from './order-page/order-page.component';
 import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
+import {LoaderComponent} from './shared/layouts/loader/loader.component';
 import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.component';
 import {TokenInterceptor} from './shared/token.interceptor';
 
@@ -30,6 +31,7 @@ import {TokenInterceptor} from './shared/token.interceptor';
     HistoryPageComponent,
     OrderPageComponent,
     AddCategoryPageComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

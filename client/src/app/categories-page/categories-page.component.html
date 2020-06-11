@@ -7,8 +7,12 @@
   </button>
 </div>
 
-<div class="row">
-  <div *ngIf="(categoryList$ | async) as list" class="col s12">
+<div
+  *ngIf="(categoryList$ | async) as list; else loaderComponent"
+  class="row">
+  <div
+    *ngIf="list.length > 0; else empty"
+    class="col s12">
     <div
       *ngFor="let category of list"
       class="collection">
@@ -19,4 +23,14 @@
       </a>
     </div>
   </div>
+
+  <ng-template #empty>
+    <div class="center">
+      Ви не маєте ще жодної створеної категорії.
+    </div>
+  </ng-template>
 </div>
+
+<ng-template #loaderComponent>
+  <app-loader></app-loader>
+</ng-template>
