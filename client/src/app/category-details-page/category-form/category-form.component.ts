@@ -11,7 +11,8 @@ import {MaterializeService} from "../../shared/services/materialize.service";
 })
 export class CategoryFormComponent {
   private _category: Category;
-  imageUrl: string;
+  imageFile: File;
+  imageUrl: string | ArrayBuffer;
   form = this.fb.group({
     name: this.fb.control(null, Validators.required),
   }, { enabled: false });
@@ -41,15 +42,32 @@ export class CategoryFormComponent {
   }
 
   onSubmit() {
-    console.log('onSubmit'); // fixme
+    console.log('onSubmit:'); // fixme
+    const target = {
+      name: this.form.get('name').value,
+      image: this.imageFile,
+    };
+    console.log('target object:', target); // fixme
   }
 
   onRemove() {
-    console.log('onRemove'); // fixme
+    console.log('onRemove category', this._category.name); // fixme
   }
 
-  onImageUpload() {
-    console.log('onImageUpload'); // fixme
+  onImageUpload(htmlElement: HTMLElement) {
+    htmlElement.click();
   }
 
+  onImageUploadComplete(event: Event) {
+    const files = event.target['files'];
+    if (files) {
+      this.imageFile = files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      }
+      reader.readAsDataURL(this.imageFile);
+    }
+  }
 }
