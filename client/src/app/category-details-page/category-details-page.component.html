@@ -1,5 +1,6 @@
 <app-category-form
-  [category]="category$ | async">
+  [category]="category$ | async"
+  (categoryUpdate)="onCategoryUpdate($event)">
 </app-category-form>
 
 <div class="row">

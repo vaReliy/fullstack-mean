@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 
+import {CategoryFormData} from "../../shared/models/category-form-data.model";
 import {Category} from "../../shared/models/category.model";
 import {MaterializeService} from "../../shared/services/materialize.service";
 
@@ -10,12 +11,13 @@ import {MaterializeService} from "../../shared/services/materialize.service";
   styleUrls: ['./category-form.component.scss'],
 })
 export class CategoryFormComponent {
-  private _category: Category;
+  @Output() categoryUpdate = new EventEmitter<CategoryFormData>();
   imageFile: File;
   imageUrl: string | ArrayBuffer;
   form = this.fb.group({
     name: this.fb.control(null, Validators.required),
   }, { enabled: false });
+  private _category: Category;
 
   @Input()
   set category(value: Category) {
@@ -39,15 +41,16 @@ export class CategoryFormComponent {
       });
       MaterializeService.updateTextFields();
     }
+    this.form.enable();
   }
 
   onSubmit() {
-    console.log('onSubmit:'); // fixme
-    const target = {
+    this.form.disable();
+    const categoryFD: CategoryFormData = {
       name: this.form.get('name').value,
       image: this.imageFile,
     };
-    console.log('target object:', target); // fixme
+    this.categoryUpdate.emit(categoryFD);
   }
 
   onRemove() {

@@ -44,7 +44,7 @@ module.exports.update = async (request, response) => {
 
     const category = await Category.findOneAndUpdate(
       { _id: request.params.id },
-      { $set: request.body },
+      { $set: data },
       { new: true }, // result after update in DB
     );
 
