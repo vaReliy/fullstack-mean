@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 import {CategoriesPageComponent} from './categories-page/categories-page.component';
 import {CategoryDetailsPageComponent} from './category-details-page/category-details-page.component';
 import {CategoryFormComponent} from './category-details-page/category-form/category-form.component';
+import {PositionsFormComponent} from './category-details-page/positions-form/positions-form.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {OrderPageComponent} from './order-page/order-page.component';
@@ -34,6 +35,7 @@ import {TokenInterceptor} from './shared/token.interceptor';
     CategoryDetailsPageComponent,
     LoaderComponent,
     CategoryFormComponent,
+    PositionsFormComponent,
   ],
   imports: [
     BrowserModule,

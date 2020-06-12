@@ -56,7 +56,7 @@ module.exports.update = async (request, response) => {
 
 module.exports.delete = async (request, response) => {
   try {
-    const targetCategoryId = response.params.id;
+    const targetCategoryId = request.params.id;
     const targetCategory = await Category.remove({ _id: targetCategoryId });
     const targetPosition = await Position.remove({ _id: targetCategoryId });
 

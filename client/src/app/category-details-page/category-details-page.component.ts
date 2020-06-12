@@ -16,7 +16,7 @@ import {MaterializeService} from "../shared/services/materialize.service";
 export class CategoryDetailsPageComponent implements OnInit {
   category$: Observable<Category>;
   refresh$ = new Subject();
-  private _categoryId: string;
+  categoryId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,9 +31,9 @@ export class CategoryDetailsPageComponent implements OnInit {
     ]).pipe(
       map(([params, _]: [Params, any]) => params),
       switchMap((params: Params) => {
-        this._categoryId = params['id'];
-        if (this._categoryId) {
-          return this.categoriesService.getCategory(this._categoryId);
+        this.categoryId = params['id'];
+        if (this.categoryId) {
+          return this.categoriesService.getCategory(this.categoryId);
         }
         return of(null);
       }),
@@ -41,19 +41,27 @@ export class CategoryDetailsPageComponent implements OnInit {
   }
 
   onCategoryUpdate(categoryData: CategoryFormData) {
-    let request = this._categoryId
-      ? this.categoriesService.update(this._categoryId, categoryData)
+    let request = this.categoryId
+      ? this.categoriesService.update(this.categoryId, categoryData)
       : this.categoriesService.create(categoryData);
 
     request.subscribe(
       (category: Category) => {
-        if (this._categoryId) {
+        if (this.categoryId) {
           this.refresh$.next();
         } else {
           this.router.navigate(['../', category._id], { relativeTo: this.route });
         }
       },
-      error => MaterializeService.showErrorMessage(error.message ? error.message : error)
+      error => MaterializeService.showErrorMessage(error.error.message)
+    );
+  }
+
+  onCategoryRemove() {
+    this.categoriesService.remove(this.categoryId).subscribe(
+      (message: string) => MaterializeService.showMessage(message),
+      error => MaterializeService.showErrorMessage(error.error.message),
+      () => this.router.navigate(['../'], { relativeTo: this.route })
     );
   }
 }

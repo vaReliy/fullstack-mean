@@ -12,6 +12,7 @@ import {MaterializeService} from "../../shared/services/materialize.service";
 })
 export class CategoryFormComponent {
   @Output() categoryUpdate = new EventEmitter<CategoryFormData>();
+  @Output() categoryRemove = new EventEmitter();
   imageFile: File;
   imageUrl: string | ArrayBuffer;
   form = this.fb.group({
@@ -54,7 +55,10 @@ export class CategoryFormComponent {
   }
 
   onRemove() {
-    console.log('onRemove category', this._category.name); // fixme
+    const decisionToRemove = window.confirm(`Ви дійсно бажаєте видалити категорію ${this._category.name}?`);
+    if (decisionToRemove) {
+      this.categoryRemove.emit();
+    }
   }
 
   onImageUpload(htmlElement: HTMLElement) {

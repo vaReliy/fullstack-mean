@@ -1,9 +1,11 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 import {CategoryFormData} from "../models/category-form-data.model";
 import {Category} from "../models/category.model";
+import {MessageResponse} from "../models/message-response.model";
 
 @Injectable({
   providedIn: 'root',
@@ -33,10 +35,17 @@ export class CategoriesService {
   }
 
   update(id: string, categoryData: CategoryFormData): Observable<Category> {
-    const url = `/api/category/${id}/`;
+    const url = `/api/category/${id}`;
     const body = this.getPayloadFormData(categoryData);
 
     return this.http.patch<Category>(url, body);
+  }
+
+  remove(id: string): Observable<string> {
+    const url = `/api/category/${id}`;
+    return this.http.delete<MessageResponse>(url).pipe(
+      map((response: MessageResponse) => response.message),
+    );
   }
 
   private getPayloadFormData(categoryData: CategoryFormData): FormData {
