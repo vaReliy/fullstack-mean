@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+import {Position} from '../../shared/models/position.model';
 
 @Component({
   selector: 'app-positions-form',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./positions-form.component.scss'],
 })
 export class PositionsFormComponent implements OnInit {
+  @Input() positionList: Position[];
 
   constructor() { }
 

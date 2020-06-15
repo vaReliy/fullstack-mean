@@ -5,8 +5,10 @@ import {map, startWith, switchMap} from "rxjs/operators";
 
 import {CategoryFormData} from "../shared/models/category-form-data.model";
 import {Category} from "../shared/models/category.model";
+import {Position} from '../shared/models/position.model';
 import {CategoriesService} from "../shared/services/categories.service";
 import {MaterializeService} from "../shared/services/materialize.service";
+import {PositionsService} from '../shared/services/positions.service';
 
 @Component({
   selector: 'app-category-details-page',
@@ -15,13 +17,15 @@ import {MaterializeService} from "../shared/services/materialize.service";
 })
 export class CategoryDetailsPageComponent implements OnInit {
   category$: Observable<Category>;
-  refresh$ = new Subject();
+  positionList$: Observable<Position[]>;
   categoryId: string;
+  private refresh$ = new Subject();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private categoriesService: CategoriesService,
+    private positionsService: PositionsService,
   ) { }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class CategoryDetailsPageComponent implements OnInit {
       switchMap((params: Params) => {
         this.categoryId = params['id'];
         if (this.categoryId) {
+          this.positionList$ = this.positionsService.getPositionList(this.categoryId);
           return this.categoriesService.getCategory(this.categoryId);
         }
         return of(null);

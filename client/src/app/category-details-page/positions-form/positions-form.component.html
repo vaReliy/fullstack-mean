@@ -7,15 +7,27 @@
       </button>
     </div>
 
-    <div class="collection">
-      <a class="collection-item collection-item-icon">
-        <span>
-            Кава <strong>20 грн.</strong>
-        </span>
-        <span>
-          <i class="material-icons">delete</i>
-        </span>
-      </a>
-    </div>
+    <ng-container *ngIf="positionList; else loaderComponent">
+      <ng-container *ngIf="positionList.length; else empty">
+        <div *ngFor="let item of positionList" class="collection">
+          <a class="collection-item collection-item-icon">
+          <span>
+            {{item.name}}<strong>{{item.cost}} грн.</strong>
+          </span>
+          <span>
+           <i class="material-icons">delete</i>
+          </span>
+          </a>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #loaderComponent>
+      <app-loader></app-loader>
+    </ng-template>
+
+    <ng-template #empty>
+      <p class="center">Ви не маєте ще жодної створеної позиції для даної категорії.</p>
+    </ng-template>
   </div>
 </div>

@@ -5,5 +5,6 @@
 </app-category-form>
 
 <app-positions-form
-  *ngIf="categoryId">
+  *ngIf="categoryId"
+  [positionList]="positionList$ | async">
 </app-positions-form>
