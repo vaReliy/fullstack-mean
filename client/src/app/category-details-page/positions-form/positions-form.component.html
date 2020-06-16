@@ -2,7 +2,10 @@
   <div class="col s12">
     <div class="page-subtitle">
       <h4>Позиції:</h4>
-      <button class="waves-effect waves-light btn grey darken-1 btn-small modal-trigger" data-target="create-modal">
+      <button
+        (click)="onPositionAdd()"
+        class="waves-effect waves-light btn grey darken-1 btn-small"
+        type="button">
         Додати позицію
       </button>
     </div>
@@ -10,11 +13,14 @@
     <ng-container *ngIf="positionList; else loaderComponent">
       <ng-container *ngIf="positionList.length; else empty">
         <div *ngFor="let item of positionList" class="collection">
-          <a class="collection-item collection-item-icon">
+          <a
+            (click)="onPositionEdit(item)"
+            class="collection-item collection-item-icon">
           <span>
-            {{item.name}}<strong>{{item.cost}} грн.</strong>
+            {{item.name}} <strong>{{item.cost}} грн.</strong>
           </span>
-          <span>
+          <span
+            (click)="onPositionRemove($event, item)">
            <i class="material-icons">delete</i>
           </span>
           </a>
@@ -31,3 +37,58 @@
     </ng-template>
   </div>
 </div>
+
+
+<form
+  [formGroup]="form"
+  (ngSubmit)="onModalConfirm()">
+  <div
+    #modalWindow
+    class="modal">
+    <div class="modal-content">
+      <h4 class="mb1">
+        Додати позицію
+      </h4>
+      <div class="input-field">
+        <input
+          formControlName="name"
+          [ngClass]="{invalid: form.get('name').invalid && form.get('name').touched}"
+          id="pos-name"
+          type="text">
+        <label for="pos-name">Назва</label>
+        <span
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+          class="helper-text red-text">
+      <span>Поле обов'язкове до заповнення.</span>
+      </span>
+      </div>
+      <div class="input-field">
+        <input
+          formControlName="cost"
+          [ngClass]="{invalid: form.get('cost').invalid && form.get('cost').touched}"
+          id="pos-cost"
+          type="number">
+        <label for="pos-cost">Ціна</label>
+        <span
+          *ngIf="form.get('cost').invalid && form.get('cost').touched"
+          class="helper-text red-text">
+      <span>Введіть коректне числове значення.</span>
+    </span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        (click)="onModalCancel()"
+        type="button"
+        class="modal-action waves-effect waves-black btn-flat">
+        Відмінити
+      </button>
+      <button
+        [disabled]="form.invalid"
+        type="submit"
+        class="modal-action btn waves-effect">
+        Зберегти
+      </button>
+    </div>
+  </div>
+</form>

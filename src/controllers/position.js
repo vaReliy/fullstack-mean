@@ -37,7 +37,7 @@ module.exports.update = async (request, response) => {
 module.exports.delete = async (request, response) => {
   try {
     const targetPosition = await Position.remove({
-      _id: response.params.id,
+      _id: request.params.id,
     });
 
     response.status(200).json({

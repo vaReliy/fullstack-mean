@@ -5,6 +5,7 @@ import {map, startWith, switchMap} from "rxjs/operators";
 
 import {CategoryFormData} from "../shared/models/category-form-data.model";
 import {Category} from "../shared/models/category.model";
+import {PositionFormData} from '../shared/models/position-form-data.model';
 import {Position} from '../shared/models/position.model';
 import {CategoriesService} from "../shared/services/categories.service";
 import {MaterializeService} from "../shared/services/materialize.service";
@@ -68,5 +69,26 @@ export class CategoryDetailsPageComponent implements OnInit {
       error => MaterializeService.showErrorMessage(error.error.message),
       () => this.router.navigate(['../'], { relativeTo: this.route })
     );
+  }
+
+  onPositionUpdate(positionData: PositionFormData) {
+    let request: Observable<Position>;
+    if (positionData._id) {
+      request = this.positionsService.update(positionData);
+    } else {
+      positionData.category = this.categoryId;
+      request = this.positionsService.create(positionData);
+    }
+
+    request.subscribe(position => {
+      this.refresh$.next();
+    }, error => MaterializeService.showErrorMessage(error.error.message))
+  }
+
+  onPositionRemove(positionId: string) {
+    this.positionsService.remove(positionId).subscribe((message: string) => {
+      MaterializeService.showMessage(message);
+      this.refresh$.next();
+    }, error => MaterializeService.showErrorMessage(error.error.message));
   }
 }

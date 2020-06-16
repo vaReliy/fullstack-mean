@@ -6,5 +6,7 @@
 
 <app-positions-form
   *ngIf="categoryId"
-  [positionList]="positionList$ | async">
+  [positionList]="positionList$ | async"
+  (positionUpdate)="onPositionUpdate($event)"
+  (positionRemove)="onPositionRemove($event)">
 </app-positions-form>
