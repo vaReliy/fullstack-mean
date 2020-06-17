@@ -1,6 +1,6 @@
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
@@ -12,7 +12,9 @@ import {CategoryFormComponent} from './category-details-page/category-form/categ
 import {PositionsFormComponent} from './category-details-page/positions-form/positions-form.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {LoginPageComponent} from './login-page/login-page.component';
+import {OrderCategoriesComponent} from './order-page/order-categories/order-categories.component';
 import {OrderPageComponent} from './order-page/order-page.component';
+import {OrderPositionsComponent} from './order-page/order-positions/order-positions.component';
 import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
@@ -36,12 +38,15 @@ import {TokenInterceptor} from './shared/token.interceptor';
     LoaderComponent,
     CategoryFormComponent,
     PositionsFormComponent,
+    OrderCategoriesComponent,
+    OrderPositionsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [
     {

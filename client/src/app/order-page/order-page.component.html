@@ -1,1 +1,66 @@
-<p>order-page works!</p>
+<div class="page-title">
+  <h4>
+    <a routerLink="/order">Замовлення</a>
+    <ng-container *ngIf="!isRoot">
+      <i class="material-icons">keyboard_arrow_right</i>
+      Додати продукцію
+    </ng-container>
+  </h4>
+  <button
+    [disabled]="order.list.length === 0"
+    (click)="showOrder()"
+    class="waves-effect btn grey darken-1">
+    Застосувати
+  </button>
+</div>
+
+<router-outlet></router-outlet>
+
+
+<div #modalWindow class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb1">Ваше замовленя</h4>
+    <table class="highlight">
+      <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Кількість</th>
+        <th>Ціна</th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let item of order.list">
+        <td>{{item.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.cost}} грн</td>
+        <td>
+          <span class="collection-item-icon">
+            <i (click)="removeOrderPosition(item)" class="material-icons">delete</i>
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="order-summary">
+      <p>Загальна вартість <strong>{{order.price}} грн</strong></p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      [disabled]="pending"
+      (click)="hideOrder()"
+      type="button"
+      class="modal-action waves-effect waves-black btn-flat">
+      Відмінити
+    </button>
+    <button
+      [disabled]="order.list.length === 0 || pending"
+      (click)="applyOrder()"
+      type="submit"
+      class="modal-action btn waves-effect">
+      Застосувати
+    </button>
+  </div>
+</div>

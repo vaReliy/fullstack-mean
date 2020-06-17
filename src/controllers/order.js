@@ -52,16 +52,16 @@ module.exports.create = async (request, response) => {
       .findOne({ user: userId })
       .sort({ date: -1 }); // newest first
 
-    const maxOrderValue = lastOrder.order || 0;
+    const maxOrderValue = lastOrder ? lastOrder.order : 0;
 
     const order = new Order({
       list: request.body.list,
       order: maxOrderValue + 1,
       user: userId,
     });
-    await order.save();
 
-    response.status(200).json(order);
+    await order.save();
+    response.status(201).json(order);
   } catch (e) {
     errorHandler(e);
   }

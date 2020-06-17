@@ -1,0 +1,37 @@
+<table *ngIf="positionList$ | async as positions; else loader" class="highlight">
+  <thead>
+  <tr>
+    <th>Назва</th>
+    <th>Вартість</th>
+    <th>Кількість</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let position of positions">
+    <td>{{position.name}}</td>
+    <td>{{position.cost}} грн</td>
+    <td>
+      <div class="input-field inline order-position-input">
+        <input
+          [(ngModel)]="position.quantity"
+          type="number"
+          min="1">
+      </div>
+    </td>
+    <td>
+      <button
+        [disabled]="!position.quantity"
+        (click)="onAddPosition(position)"
+        class="btn waves-effect wavers-light btn-small">
+        Додати
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
