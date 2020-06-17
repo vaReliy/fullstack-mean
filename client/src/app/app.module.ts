@@ -10,7 +10,9 @@ import {CategoriesPageComponent} from './categories-page/categories-page.compone
 import {CategoryDetailsPageComponent} from './category-details-page/category-details-page.component';
 import {CategoryFormComponent} from './category-details-page/category-form/category-form.component';
 import {PositionsFormComponent} from './category-details-page/positions-form/positions-form.component';
+import {HistoryFilterComponent} from './history-page/history-filter/history-filter.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
+import {HistoryTableComponent} from './history-page/history-table/history-table.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {OrderCategoriesComponent} from './order-page/order-categories/order-categories.component';
 import {OrderPageComponent} from './order-page/order-page.component';
@@ -40,6 +42,8 @@ import {TokenInterceptor} from './shared/token.interceptor';
     PositionsFormComponent,
     OrderCategoriesComponent,
     OrderPositionsComponent,
+    HistoryFilterComponent,
+    HistoryTableComponent,
   ],
   imports: [
     BrowserModule,

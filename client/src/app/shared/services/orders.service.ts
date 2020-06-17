@@ -1,9 +1,11 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {OrderPosition} from '../models/order-position.model';
 import {Order} from '../models/order.model';
+import {PaginationData} from '../models/pagination-data.model';
+import {PaginationParams} from '../models/pagination-params.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +17,13 @@ export class OrdersService {
   ) {
   }
 
-  getOrderList(): Observable<Order[]> {
+  getOrderList(parameters: PaginationParams): Observable<PaginationData<Order>> {
     const url = '/api/order';
-    return this.http.get<Order[]>(url);
+    return this.http.get<PaginationData<Order>>(url, {
+      params: new HttpParams({
+        fromObject: parameters as any, // fixme type
+      }),
+    });
   }
 
   create(orderPositions: OrderPosition[]): Observable<Order> {

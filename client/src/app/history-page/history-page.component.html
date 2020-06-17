@@ -1,1 +1,72 @@
-<p>history-page works!</p>
+<div class="page-title">
+  <h4>Історія замовлень</h4>
+  <button
+    #tooltip
+    (click)="isFilterActive = !isFilterActive"
+    [ngClass]="{ 'active': isFilterActive }"
+    class="btn btn-small"
+    data-tooltip="Показати фільтр"
+    data-position="left">
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-history-filter *ngIf="isFilterActive"></app-history-filter>
+
+<ng-container *ngIf="ordersData$ | async as data; else loader">
+  <app-history-table
+    [orderList]="data.list"
+    (showOrderDetails)="onModalShow($event)">
+  </app-history-table>
+
+  <div *ngIf="data.total > data.list.length" class="center mb2">
+    <button
+      *ngIf="!isLoadingMore; else loader"
+      (click)="onShowMore()"
+      class="btn waves-effect grey darken-1 btn-small">
+      Завантажити ще {{STEP}} записів
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+
+<div
+  #modalWindow
+  class="modal modal-fixed-footer">
+  <div
+    *ngIf="activeOrder"
+    class="modal-content">
+    <h4 class="mb1">Замовлення №{{activeOrder.order}}</h4>
+    <table class="highlight">
+      <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Кількість</th>
+        <th>Ціна</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let position of activeOrder.list">
+        <td>{{position.name}}</td>
+        <td>{{position.quantity}}</td>
+        <td>{{position.cost}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="order-summary">
+      <p>Загальна вартість <strong>{{getOrderPrice(activeOrder)}} грн</strong></p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      (click)="onModalHide()"
+      class="modal-action waves-effect waves-black btn-flat">
+      Закрити
+    </button>
+  </div>
+</div>

@@ -12,13 +12,13 @@ const errorHandler = require('../utils/errorHandler');
  * @returns {Promise<void>}
  */
 module.exports.get = async (request, response) => {
-  const { skip, take, from, to } = request.query;
+  const { skip, take, from, to, sortBy } = request.query;
   const query = {
     user: request.user.id,
   };
 
   if (from || to) {
-    query.date = {};
+    query.date = new Date;
     if (from) {
       query.date.$gte = from;
     }
@@ -30,10 +30,16 @@ module.exports.get = async (request, response) => {
   try {
     const orderList = await Order
       .find(query)
+      .sort({ date: sortBy === 'desc' ? -1 : 1 })
       .skip(+skip)
       .limit(+take);
 
-    response.status(200).json(orderList);
+    const totalItems = await Order.countDocuments(query);
+
+    response.status(200).json({
+      list: orderList,
+      total: totalItems,
+    });
   } catch (e) {
     errorHandler(e);
   }

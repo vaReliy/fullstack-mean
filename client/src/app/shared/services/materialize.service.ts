@@ -7,9 +7,12 @@ declare var M: {
   Modal: {
     init: Function,
   },
+  Tooltip: {
+    init: Function,
+  },
 };
 
-export interface ModalInstance {
+export interface MaterialInstance {
   open?(): void;
   close?(): void;
   destroy?(): void;
@@ -28,8 +31,12 @@ export class MaterializeService {
     M.FloatingActionButton.init(nativeElement);
   }
 
-  static modalInit(nativeElement: any, options?: any): ModalInstance {
+  static modalInit(nativeElement: any, options?: any): MaterialInstance {
     return M.Modal.init(nativeElement, options);
+  }
+
+  static tooltipInit(nativeElement: any, options?: any): MaterialInstance {
+    return M.Tooltip.init(nativeElement, options);
   }
 
   static updateTextFields() {

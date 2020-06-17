@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 
 import {PositionFormData} from '../../shared/models/position-form-data.model';
 import {Position} from '../../shared/models/position.model';
-import {MaterializeService, ModalInstance} from '../../shared/services/materialize.service';
+import {MaterialInstance, MaterializeService} from '../../shared/services/materialize.service';
 
 @Component({
   selector: 'app-positions-form',
@@ -20,7 +20,7 @@ export class PositionsFormComponent implements AfterViewInit, OnDestroy {
   });
   private _positionList: Position[];
   private _activePositionId: string;
-  private _modalInstance: ModalInstance;
+  private _modalInstance: MaterialInstance;
 
   @Input()
   set positionList(value: Position[]) {

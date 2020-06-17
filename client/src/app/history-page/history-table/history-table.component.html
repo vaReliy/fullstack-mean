@@ -1,0 +1,35 @@
+<table
+  *ngIf="orderList?.length > 0; else empty"
+  class="highlight mb2">
+  <thead>
+  <tr>
+    <th>№</th>
+    <th>Дата</th>
+    <th>Час</th>
+    <th>Сума</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let order of orderList">
+    <td>{{order.order}}</td>
+    <td>{{order.date | date:'dd.MM.yyyy'}}</td>
+    <td>{{order.date | date:'HH:mm:ss'}}</td>
+    <td>{{getOrderPrice(order)}} грн</td>
+    <td>
+      <button
+        (click)="showOrderDetails.emit(order)"
+        class="btn btn-small grey darken-1">
+        <i class="material-icons">open_in_new</i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #empty>
+  <div class="center">
+    Ви не маєте ще жодного створеного замовлення.
+  </div>
+</ng-template>

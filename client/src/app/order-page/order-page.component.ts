@@ -3,7 +3,7 @@ import {NavigationEnd, Router} from '@angular/router';
 
 import {OrderPosition} from '../shared/models/order-position.model';
 import {Order} from '../shared/models/order.model';
-import {MaterializeService, ModalInstance} from '../shared/services/materialize.service';
+import {MaterialInstance, MaterializeService} from '../shared/services/materialize.service';
 import {OrdersService} from '../shared/services/orders.service';
 import {OrderService} from './order.service';
 
@@ -17,7 +17,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('modalWindow', { static: true }) modalRef: ElementRef;
   pending = false;
   isRoot = true;
-  private _modal: ModalInstance;
+  private _modal: MaterialInstance;
 
   constructor(
     public order: OrderService,
