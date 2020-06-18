@@ -10,6 +10,9 @@ declare var M: {
   Modal: {
     init: Function,
   },
+  TapTarget: {
+    init: Function,
+  },
   Tooltip: {
     init: Function,
   },
@@ -44,6 +47,10 @@ export class MaterializeService {
 
   static tooltipInit(nativeElement: any, options?: any): MaterialInstance {
     return M.Tooltip.init(nativeElement, options);
+  }
+
+  static tapTargetInit(nativeElement: any, options?: any): MaterialInstance {
+    return M.TapTarget.init(nativeElement, options);
   }
 
   static datepickerInit(nativeElement: any, onClose: () => void): MaterialDatepicker {
