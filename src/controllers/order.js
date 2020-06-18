@@ -12,7 +12,7 @@ const errorHandler = require('../utils/errorHandler');
  * @returns {Promise<void>}
  */
 module.exports.get = async (request, response) => {
-  const { skip, take, from, to, sortBy } = request.query;
+  const { skip, take, order, from, to, sortBy } = request.query;
   const query = {
     user: request.user.id,
   };
@@ -25,6 +25,10 @@ module.exports.get = async (request, response) => {
     if (to) {
       query.date.$lte = to;
     }
+  }
+
+  if (order) {
+    query.order = +order;
   }
 
   try {

@@ -12,7 +12,7 @@ export class HistoryFilterComponent implements AfterViewInit, OnDestroy {
   @Output() filterChange = new EventEmitter<Filter>();
   @ViewChild('from', {static: true}) dateFromRef: ElementRef;
   @ViewChild('to', {static: true}) dateToRef: ElementRef;
-  isFilterValid = false;
+  isFilterValid = true;
   orderNumber: string;
   private _from: MaterialDatepicker;
   private _to: MaterialDatepicker;
