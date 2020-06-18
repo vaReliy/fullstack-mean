@@ -3,7 +3,10 @@
   <button
     #tooltip
     (click)="isFilterActive = !isFilterActive"
-    [ngClass]="{ 'active': isFilterActive }"
+    [ngClass]="{
+    'active': isFilterActive,
+    'red': isFilterActivated()
+    }"
     class="btn btn-small"
     data-tooltip="Показати фільтр"
     data-position="left">
@@ -11,10 +14,14 @@
   </button>
 </div>
 
-<app-history-filter *ngIf="isFilterActive"></app-history-filter>
+<app-history-filter
+  *ngIf="isFilterActive"
+  (filterChange)="onFilterChange($event)">
+</app-history-filter>
 
 <ng-container *ngIf="ordersData$ | async as data; else loader">
   <app-history-table
+    *ngIf="data && !isReloading; else loader"
     [orderList]="data.list"
     (showOrderDetails)="onModalShow($event)">
   </app-history-table>
@@ -24,7 +31,7 @@
       *ngIf="!isLoadingMore; else loader"
       (click)="onShowMore()"
       class="btn waves-effect grey darken-1 btn-small">
-      Завантажити ще {{STEP}} записів
+      Завантажити ще
     </button>
   </div>
 </ng-container>

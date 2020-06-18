@@ -16,7 +16,7 @@ export class HistoryTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  getOrderPrice(order: Order) { // fixme: not good solution
+  getOrderPrice(order: Order) {
     return order.list.reduce((total, item) => {
       total += item.cost * item.quantity;
       return total;

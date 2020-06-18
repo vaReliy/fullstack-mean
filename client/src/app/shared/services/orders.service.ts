@@ -11,6 +11,14 @@ import {PaginationParams} from '../models/pagination-params.model';
   providedIn: 'root',
 })
 export class OrdersService {
+  static STEP: number = 2;
+  static getDefaultPaginationParams(): PaginationParams {
+    return {
+      skip: 0,
+      take: OrdersService.STEP,
+      sortBy: 'desc',
+    };
+  }
 
   constructor(
     private http: HttpClient,

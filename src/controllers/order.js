@@ -18,7 +18,7 @@ module.exports.get = async (request, response) => {
   };
 
   if (from || to) {
-    query.date = new Date;
+    query.date = {};
     if (from) {
       query.date.$gte = from;
     }
