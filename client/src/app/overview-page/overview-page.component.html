@@ -15,12 +15,18 @@
     <div class="card light-blue lighten-2 white-text">
       <div class="card-content">
         <span class="card-title">Прибуток:</span>
-        <h3>20 000 грн.</h3>
-        <h3 class="green-text text-darken-2 m0 mb1">
-          <i class="material-icons">arrow_upward</i>
-          26%
+        <h3>{{data.gain.yesterday}} грн.</h3>
+        <h3
+          [ngClass]="{
+            'green-text text-darken-2': data.gain.isHigher,
+            'red-text': !data.gain.isHigher
+          }"
+          class="m0 mb1">
+          <i *ngIf="data.gain.isHigher" class="material-icons">arrow_upward</i>
+          <i *ngIf="!data.gain.isHigher" class="material-icons">arrow_downward</i>
+          {{data.gain.percent}}%
         </h3>
-        <p>Прибуток вчора на 20% выще нижче середнього: 5555 грн/день</p>
+        <p>Прибуток вчора на {{data.gain.percent}}% {{data.gain.isHigher ? 'вище' : 'нижче'}} середнього: {{data.gain.compare}} грн/день</p>
       </div>
     </div>
   </div>
@@ -29,12 +35,18 @@
     <div class="card orange lighten-2 white-text">
       <div class="card-content">
         <span class="card-title">Замовленнь:</span>
-        <h3>200</h3>
-        <h3 class="red-text m0 mb1">
-          <i class="material-icons">arrow_downward</i>
-          26%
+        <h3>{{data.order.yesterday}}</h3>
+        <h3
+          [ngClass]="{
+            'green-text text-darken-2': data.order.isHigher,
+            'red-text': !data.order.isHigher
+          }"
+          class="m0 mb1">
+          <i *ngIf="data.gain.isHigher" class="material-icons">arrow_upward</i>
+          <i *ngIf="!data.gain.isHigher" class="material-icons">arrow_downward</i>
+          {{data.order.percent}}%
         </h3>
-        <p>Число замовлень вчора на 26% вище ниже середнього значення: 3 зам/день</p>
+        <p>Число замовлень вчора на {{data.order.percent}}% {{data.order.isHigher ? 'вище' : 'нижче'}} середнього значення: {{data.order.compare}} зам/день</p>
       </div>
     </div>
   </div>
