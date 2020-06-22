@@ -1,1 +1,21 @@
-<p>analytics-page works!</p>
+<div [style.display]="isLoading ? 'none' : 'block'">
+  <div class="page-title">
+    <h4>Аналітика</h4>
+  </div>
+
+  <div class="average-price">
+    <p>Середній чек <strong>{{averageCheck}} грн</strong></p>
+  </div>
+
+  <div class="chart-block">
+    <h5>Прибуток</h5>
+    <canvas #gain class="chart-item"></canvas>
+  </div>
+
+  <div class="chart-block">
+    <h5>Замовлення</h5>
+    <canvas #orders class="chart-item"></canvas>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading"></app-loader>

@@ -45,10 +45,26 @@ module.exports.overview = async (request, response) => {
   }
 };
 
-module.exports.analytics = (request, response) => {
-  return response.status(200).json({
-    analytics: true,
-  });
+module.exports.analytics = async (request, response) => {
+  try {
+    const allOrders = await Order
+        .find({user: request.user.id})
+        .sort({date: 'asc'});
+    const ordersMap = getOrdersMap(allOrders);
+    const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2);
+    const chart = Object.keys(ordersMap).map(label => {
+      const gain = calculatePrice(ordersMap[label]);
+      const order = ordersMap[label].length;
+      return { label, gain, order };
+    });
+
+    response.status(200).json({
+      average,
+      chart,
+    });
+  } catch (e) {
+    errorHandler(e);
+  }
 };
 
 /**
