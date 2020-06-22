@@ -14,7 +14,7 @@
     "start:client": "npm run start --prefix client",
     "start:server": "nodemon index",
     "start": "run-p start:server start:client",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm run install:client && npm run build --prefix client"
   },
   "keywords": [
     "angular",
