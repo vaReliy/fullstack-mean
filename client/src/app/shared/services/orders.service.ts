@@ -11,7 +11,7 @@ import {PaginationParams} from '../models/pagination-params.model';
   providedIn: 'root',
 })
 export class OrdersService {
-  static STEP: number = 2;
+  static STEP: number = 5;
   static getDefaultPaginationParams(): PaginationParams {
     return {
       skip: 0,

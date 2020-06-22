@@ -2,6 +2,6 @@
 
 /node_modules
 
-/src/config/keys.js
+/src/config/keys.dev.js
 package-lock.json
 /client/package-lock.json

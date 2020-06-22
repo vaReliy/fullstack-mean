@@ -2,15 +2,19 @@
   "name": "fullstack-mean",
   "version": "1.0.0",
   "description": "MEAN fullstack education project",
+  "engines": {
+    "node": "12.16.3",
+    "npm": "6.14.5"
+  },
   "main": "src/index.js",
   "scripts": {
-    "i-all": "npm run install:all",
     "install:all": "npm run install:server && npm run install:client",
     "install:client": "npm install --prefix client",
     "install:server": "npm install",
     "start:client": "npm run start --prefix client",
     "start:server": "nodemon index",
-    "start": "run-p start:server start:client"
+    "start": "run-p start:server start:client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:client && npm run build --prefix client"
   },
   "keywords": [
     "angular",
