@@ -35,11 +35,11 @@ app.use('/api/order', passport.authenticate('jwt', { session: false }), orderRou
 app.use('/api/position', passport.authenticate('jwt', { session: false }), positionRoute);
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build/client'));
+    app.use(express.static('client/dist/client'));
 
     app.get('*', (request, response) => {
         response.sendfile(path.resolve(
-            __dirname, 'client', 'build', 'client', 'index.html'
+            __dirname, 'client', 'dist', 'client', 'index.html'
         ));
     });
 }
