@@ -15,7 +15,7 @@
     "start:server": "nodemon index",
     "start": "run-p start:server start:client",
     "build:client": "npm run build:heroku --prefix client",
-    "heroku-postbuild": "npm run install:client && npm run build:client"
+    "heroku-postbuild": "GENERATE_SOURCEMAP=false npm run install:client && npm run build:client"
   },
   "keywords": [
     "angular",
