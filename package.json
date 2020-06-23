@@ -14,7 +14,7 @@
     "start:client": "npm run start --prefix client",
     "start:server": "nodemon index",
     "start": "run-p start:server start:client",
-    "build:client": "npm run build:prod --prefix client",
+    "build:client": "npm run build:heroku --prefix client",
     "heroku-postbuild": "npm run install:client && npm run build:client"
   },
   "keywords": [
