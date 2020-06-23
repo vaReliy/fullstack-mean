@@ -6,7 +6,7 @@
     "start": "ng serve",
     "i": "npm install",
     "build": "ng build",
-    "build:heroku": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --aot=true --prod",
+    "build:heroku": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
