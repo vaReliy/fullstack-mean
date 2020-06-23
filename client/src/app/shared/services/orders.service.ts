@@ -2,6 +2,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
+import {environment} from '../../../environments/environment';
 import {OrderPosition} from '../models/order-position.model';
 import {Order} from '../models/order.model';
 import {PaginationData} from '../models/pagination-data.model';
@@ -26,7 +27,7 @@ export class OrdersService {
   }
 
   getOrderList(parameters: PaginationParams): Observable<PaginationData<Order>> {
-    const url = '/api/order';
+    const url = `${environment.apiUrl}/api/order`;
     return this.http.get<PaginationData<Order>>(url, {
       params: new HttpParams({
         fromObject: parameters as any, // fixme type
@@ -35,7 +36,7 @@ export class OrdersService {
   }
 
   create(orderPositions: OrderPosition[]): Observable<Order> {
-    const url = '/api/order';
+    const url = `${environment.apiUrl}/api/order`;
     const body = {
       list: orderPositions.map(p => {
         delete p._id;

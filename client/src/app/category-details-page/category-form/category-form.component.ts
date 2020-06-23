@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
+import {environment} from '../../../environments/environment';
 
 import {CategoryFormData} from "../../shared/models/category-form-data.model";
 import {Category} from "../../shared/models/category.model";
@@ -36,7 +37,7 @@ export class CategoryFormComponent {
 
   initialize() {
     if (this._category) {
-      this.imageUrl = this._category.imageSrc;
+      this.imageUrl = `${environment.apiUrl}/${this._category.imageSrc}`;
       this.form.patchValue({
         name: this._category.name,
       });

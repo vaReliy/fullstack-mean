@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
+import {environment} from '../../../environments/environment';
 import {AnalyticsData} from '../models/analitycs-data.model';
 import {OverviewData} from '../models/overview-data.model';
 
@@ -15,12 +16,12 @@ export class OverviewService {
   }
 
   getOverviewData(): Observable<OverviewData> {
-    const url = '/api/analytics/overview';
+    const url = `${environment.apiUrl}/api/analytics/overview`;
     return this.http.get<OverviewData>(url);
   }
 
   getAnalyticsData(): Observable<AnalyticsData> {
-    const url = '/api/analytics';
+    const url = `${environment.apiUrl}/api/analytics`;
     return this.http.get<AnalyticsData>(url);
   }
 }

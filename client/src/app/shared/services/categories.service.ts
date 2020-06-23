@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
+import {environment} from '../../../environments/environment';
 import {CategoryFormData} from "../models/category-form-data.model";
 import {Category} from "../models/category.model";
 import {MessageResponse} from "../models/message-response.model";
@@ -18,31 +19,31 @@ export class CategoriesService {
   }
 
   getCategoryList(): Observable<Category[]> {
-    const url = '/api/category/';
+    const url = `${environment.apiUrl}/api/category/`;
     return this.http.get<Category[]>(url);
   }
 
   getCategory(id: string): Observable<Category> {
-    const url = `/api/category/${id}`;
+    const url = `${environment.apiUrl}/api/category/${id}`;
     return this.http.get<Category>(url);
   }
 
   create(categoryData: CategoryFormData): Observable<Category> {
-    const url = '/api/category/';
+    const url = `${environment.apiUrl}/api/category/`;
     const body = this.getPayloadFormData(categoryData);
 
     return this.http.post<Category>(url, body);
   }
 
   update(id: string, categoryData: CategoryFormData): Observable<Category> {
-    const url = `/api/category/${id}`;
+    const url = `${environment.apiUrl}/api/category/${id}`;
     const body = this.getPayloadFormData(categoryData);
 
     return this.http.patch<Category>(url, body);
   }
 
   remove(id: string): Observable<string> {
-    const url = `/api/category/${id}`;
+    const url = `${environment.apiUrl}/api/category/${id}`;
     return this.http.delete<MessageResponse>(url).pipe(
       map((response: MessageResponse) => response.message),
     );
