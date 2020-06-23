@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng serve",
+    "start": "node --max_old_space_size=8048 node_modules/@angular/cli/bin/ng serve",
     "i": "npm install",
     "build": "ng build",
-    "build:heroku": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod",
+    "build:heroku": "node --max_old_space_size=8048 node_modules/@angular/cli/bin/ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
