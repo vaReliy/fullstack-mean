@@ -6,7 +6,7 @@
     "start": "ng serve",
     "i": "npm install",
     "build": "ng build",
-    "build:prod": "ng build --prod",
+    "build:heroku": "ng build --aot=true --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
