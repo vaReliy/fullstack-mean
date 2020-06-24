@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/dist/client'));
 
     app.get('*', (request, response) => {
-        response.sendfile(path.resolve(
+        response.sendfile(path.join(
             __dirname, 'client', 'dist', 'client', 'index.html'
         ));
     });
