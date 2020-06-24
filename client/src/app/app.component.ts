@@ -1,5 +1,7 @@
+import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 
+import {environment} from '../environments/environment';
 import {AuthService} from './shared/services/auth.service';
 
 @Component({
@@ -10,6 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private http: HttpClient,
   ) {
   }
 
@@ -17,6 +20,12 @@ export class AppComponent implements OnInit {
     const availableToken = localStorage.getItem('auth-token');
     if (availableToken) {
       this.authService.setToken(availableToken);
+    }
+
+    if (environment.production) {
+      this.http.get('assets/heroku.port').subscribe(port => {
+        environment.apiUrl += `:${port}`;
+      });
     }
   }
 }
