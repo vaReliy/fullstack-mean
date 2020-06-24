@@ -8,4 +8,4 @@ client.get('/*', (req, res) => {
   res.sendFile('index.html', { root: './dist/client' });
 });
 
-client.listen(process.env.PORT || 4202);
+client.listen(process.env.CLIENT_PORT || 4202);
