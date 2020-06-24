@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
     if (environment.production) {
       this.http.get('assets/heroku.port').subscribe(port => {
-        environment.apiUrl += `:${port}`;
+        // environment.apiUrl += `:${port}`;
         console.log('environment.apiUrl', environment.apiUrl); // fixme
       });
     }
