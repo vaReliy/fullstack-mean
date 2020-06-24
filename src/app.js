@@ -36,4 +36,10 @@ app.use('/api/category', passport.authenticate('jwt', { session: false }), categ
 app.use('/api/order', passport.authenticate('jwt', { session: false }), orderRoute);
 app.use('/api/position', passport.authenticate('jwt', { session: false }), positionRoute);
 
+// connect angular app
+app.use(express.static('./client/dist/client'));
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', { root: './client/dist/client' });
+});
+
 module.exports = app;

@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
     "start:dev": "ng serve --port 4202",
     "i": "npm install",
     "build": "ng build",
