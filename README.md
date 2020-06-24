@@ -9,7 +9,10 @@ npm run install:all
 #2. Fill the keys of ./src/config/keys.dev.js for possibility ti run project in dev-mode.
 
 #3. Run local in dev-mode (client and server):
-npm run start
+# dev build
+npm run start:dev
+#prod build (Neea actual values of keys: MONGO_URI, JWT_SECRET, JWT_EXPIRIES_IN):
+npm run build:client && NODE_ENV=production npm run start
 ```
 
 ##Deploy to Heroku
