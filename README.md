@@ -21,4 +21,4 @@ git push heroku master
 ```
 
 ##Project link:
-https://serene-spire-30052.herokuapp.com/
+https://mean-fullstack-vg.herokuapp.com/
