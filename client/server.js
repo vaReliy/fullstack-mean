@@ -1,6 +1,6 @@
 const express = require('express');
 const client = express();
-const CLIENT_PORT = process.env.CLIENT_PORT || 443;
+const CLIENT_PORT = process.env.CLIENT_PORT || 4202;
 
 client.use(express.static('dist/client'));
 
